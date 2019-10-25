@@ -20,6 +20,7 @@ module.exports = webpackMerge(webpackBaseConfig, {
             "process.env": "prod"
         }),
         new CleanWebpackPlugin({
+            dry: false,
             dangerouslyAllowCleanPatternsOutsideProject: true
         })
     ]
