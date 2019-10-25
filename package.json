@@ -3,5 +3,17 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "Alep",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "dev": "webpack-dev-server --config config/webpack.dev.config.js --hot --inline",
+    "build": "webpack --config config/webpack.prod.config.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.9.0",
+    "webpack-merge": "^4.2.2"
+  }
 }
