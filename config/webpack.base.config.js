@@ -22,6 +22,11 @@ module.exports = {
                 options: {
                     formatter: require("eslint-formatter-pretty")
                 }
+            },
+            {
+                test: /\.js?$/,
+                loader: "babel-loader",
+                include: [resolve("src")]
             }
         ]
     }
