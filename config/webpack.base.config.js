@@ -27,6 +27,15 @@ module.exports = {
                 test: /\.js?$/,
                 loader: "babel-loader",
                 include: [resolve("src")]
+            },
+            {
+                test: /\.html$/,
+                loader: [
+                    {
+                        loader: "html-loader",
+                        options: { interpolate: true }
+                    }
+                ]
             }
         ]
     }

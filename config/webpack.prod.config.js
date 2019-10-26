@@ -4,7 +4,8 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const webpack = require("webpack");
 const webpackMerge = require("webpack-merge");
 const webpackBaseConfig = require("./webpack.base.config");
-const PUBLIC_PATH = "";
+const HTMLWebpackPlugin = require("html-webpack-plugin");
+const PUBLIC_PATH = "/";
 const DIR_DIST = "dist";
 const DIR_ASSETS = "static";
 module.exports = webpackMerge(webpackBaseConfig, {
@@ -22,6 +23,16 @@ module.exports = webpackMerge(webpackBaseConfig, {
         new CleanWebpackPlugin({
             dry: false,
             dangerouslyAllowCleanPatternsOutsideProject: true
+        }),
+        new HTMLWebpackPlugin({
+            filename: resolve(`${DIR_DIST}/index.html`),
+            template: "index.html",
+            minify: {
+                removeComments: true,
+                collapseWhitespace: true,
+                removeAttributeQuotes: true
+            },
+            chunksSortMode: "dependency"
         })
     ]
 });

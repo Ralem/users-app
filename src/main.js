@@ -3,6 +3,6 @@ const test = () => {
 };
 class Test {
     static isTest = true;
-    test = test;
+    static test = test;
 }
 window.test = Test;

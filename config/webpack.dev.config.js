@@ -2,6 +2,7 @@
 const webpack = require("webpack");
 const webpackMerge = require("webpack-merge");
 const webpackBaseConfig = require("./webpack.base.config");
+const HTMLWebpackPlugin = require("html-webpack-plugin");
 module.exports = webpackMerge(webpackBaseConfig, {
     mode: "development",
     devServer: {
@@ -15,6 +16,11 @@ module.exports = webpackMerge(webpackBaseConfig, {
     plugins: [
         new webpack.DefinePlugin({
             "process.env": "dev"
+        }),
+        new HTMLWebpackPlugin({
+            template: "index.html",
+            filename: "index.html",
+            inject: true
         })
     ]
 });
