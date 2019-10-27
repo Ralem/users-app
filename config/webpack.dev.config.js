@@ -13,6 +13,18 @@ module.exports = webpackMerge(webpackBaseConfig, {
         },
         historyApiFallback: true
     },
+    module: {
+        rules: [
+            {
+                test: /\.styl?$/,
+                use: ["style-loader", "css-loader", "stylus-loader"]
+            },
+            {
+                test: /\.css?$/,
+                use: ["style-loader", "css-loader"]
+            }
+        ]
+    },
     plugins: [
         new webpack.DefinePlugin({
             "process.env": "dev"

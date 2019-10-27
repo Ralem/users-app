@@ -5,9 +5,13 @@ const webpack = require("webpack");
 const webpackMerge = require("webpack-merge");
 const webpackBaseConfig = require("./webpack.base.config");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
+const MiniCSSExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+
 const PUBLIC_PATH = "/";
 const DIR_DIST = "dist";
 const DIR_ASSETS = "static";
+
 module.exports = webpackMerge(webpackBaseConfig, {
     mode: "production",
     devtool: "#source-map",
@@ -15,6 +19,22 @@ module.exports = webpackMerge(webpackBaseConfig, {
         path: resolve(DIR_DIST),
         publicPath: PUBLIC_PATH,
         filename: `${DIR_ASSETS}/js/[name].[chunkhash].js`
+    },
+    module: {
+        rules: [
+            {
+                test: /\.styl?$/,
+                use: [
+                    MiniCSSExtractPlugin.loader,
+                    "css-loader",
+                    "stylus-loader"
+                ]
+            },
+            {
+                test: /\.css?$/,
+                use: [MiniCSSExtractPlugin.loader, "css-loader"]
+            }
+        ]
     },
     plugins: [
         new webpack.DefinePlugin({
@@ -33,6 +53,12 @@ module.exports = webpackMerge(webpackBaseConfig, {
                 removeAttributeQuotes: true
             },
             chunksSortMode: "dependency"
+        }),
+        new MiniCSSExtractPlugin({
+            filename: `${DIR_ASSETS}/css/[name].[hash].css`
+        }),
+        new OptimizeCSSAssetsPlugin({
+            cssProcessorOptions: { map: { inline: false, annotation: true } }
         })
     ]
 });
