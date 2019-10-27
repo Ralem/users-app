@@ -8,7 +8,10 @@
     "dev": "webpack-dev-server --config config/webpack.dev.config.js --hot --inline",
     "build": "webpack --config config/webpack.prod.config.js"
   },
-  "dependencies": {},
+  "dependencies": {
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.6.4",
     "@babel/plugin-proposal-class-properties": "^7.5.5",

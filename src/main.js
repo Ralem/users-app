@@ -1,8 +1,4 @@
-const test = () => {
-    console.log("test");
-};
-class Test {
-    static isTest = true;
-    static test = test;
-}
-window.test = Test;
+import React from "react";
+import { render } from "react-dom";
+import App from "app";
+render(<App />, document.getElementById("app"));
