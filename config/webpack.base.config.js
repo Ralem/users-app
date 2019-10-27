@@ -11,7 +11,8 @@ module.exports = {
             components: resolve("src/app/components"),
             reducers: resolve("src/app/reducers"),
             actions: resolve("src/app/actions"),
-            style: resolve("src/style")
+            style: resolve("src/style"),
+            assets: resolve("src/assets")
         }
     },
     module: {

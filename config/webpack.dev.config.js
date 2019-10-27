@@ -22,12 +22,28 @@ module.exports = webpackMerge(webpackBaseConfig, {
             {
                 test: /\.css?$/,
                 use: ["style-loader", "css-loader"]
+            },
+            {
+                test: /\.(png|jpg|gif)$/i,
+                loader: "url-loader",
+                options: {
+                    limit: 8000,
+                    name: "img/[name].[ext]"
+                }
+            },
+            {
+                test: /\.(woff2?|eot|ttf|otf|svg)(\?.*)?$/,
+                loader: "url-loader",
+                options: {
+                    limit: 8000,
+                    name: "fonts/[name].[ext]"
+                }
             }
         ]
     },
     plugins: [
-        new webpack.DefinePlugin({
-            "process.env": "dev"
+        new webpack.EnvironmentPlugin({
+            NODE_ENV: "development"
         }),
         new HTMLWebpackPlugin({
             template: "index.html",

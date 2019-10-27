@@ -7,6 +7,7 @@ const webpackBaseConfig = require("./webpack.base.config");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 const MiniCSSExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const PUBLIC_PATH = "/";
 const DIR_DIST = "dist";
@@ -33,6 +34,22 @@ module.exports = webpackMerge(webpackBaseConfig, {
             {
                 test: /\.css?$/,
                 use: [MiniCSSExtractPlugin.loader, "css-loader"]
+            },
+            {
+                test: /\.(png|jpg|gif)$/i,
+                loader: "url-loader",
+                options: {
+                    limit: 8000,
+                    name: `${DIR_ASSETS}/img/[name].[hash].[ext]`
+                }
+            },
+            {
+                test: /\.(woff2?|eot|ttf|otf|svg)(\?.*)?$/,
+                loader: "url-loader",
+                options: {
+                    limit: 8000,
+                    name: `${DIR_ASSETS}/fonts/[name].[hash].[ext]`
+                }
             }
         ]
     },
@@ -59,6 +76,13 @@ module.exports = webpackMerge(webpackBaseConfig, {
         }),
         new OptimizeCSSAssetsPlugin({
             cssProcessorOptions: { map: { inline: false, annotation: true } }
-        })
+        }),
+        new CopyWebpackPlugin([
+            {
+                from: resolve("static"),
+                to: DIR_ASSETS,
+                ignore: [".*"]
+            }
+        ])
     ]
 });
