@@ -1,0 +1,14 @@
+import React from "react";
+import PropTypes from "prop-types";
+
+import "./{{ name }}.styl";
+const {{ name }} = ({ children }) => <div className="{{ name }}">{children}</div>;
+{{ name }}.displayName = "{{ name }}";
+{{ name }}.propTypes = {
+    children: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.node,
+        PropTypes.arrayOf(PropTypes.node)
+    ])
+};
+export default {{ name }};

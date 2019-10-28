@@ -1,0 +1,20 @@
+{
+    "files": [
+        {
+            "from": "component.js.hbs",
+            "to": "src/app/components/{{ name }}/{{ name }}.js"
+        },
+        {
+            "from": "component.stories.js.hbs",
+            "to": "src/app/components/{{ name }}/{{ name }}.stories.js"
+        },
+        {
+            "from": "component.styl.hbs",
+            "to": "src/app/components/{{ name }}/{{ name }}.styl"
+        },
+        {
+            "from": "index.js.hbs",
+            "to": "src/app/components/{{ name }}/index.js"
+        }
+    ]
+}
