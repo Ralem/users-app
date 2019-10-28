@@ -1,13 +1,13 @@
 import React from "react";
-import { Paragraph } from "components/Paragraph";
-import { withCenteredContainer } from "src/utils/Storybook";
+import { Subtitle } from "components/Subtitle";
 import { withKnobs, select } from "@storybook/addon-knobs";
+import { withCenteredContainer } from "src/utils/Storybook";
 export default {
-    title: "Paragraph",
+    title: "Subtitle",
     decorators: [withKnobs, withCenteredContainer]
 };
 export const Default = () => (
-    <Paragraph
+    <Subtitle
         color={select(
             "Color",
             {
@@ -20,6 +20,6 @@ export const Default = () => (
             "white"
         )}
     >
-        Hello from <b>Paragraph</b> content
-    </Paragraph>
+        Hello from <b>Subtitle</b> Component
+    </Subtitle>
 );

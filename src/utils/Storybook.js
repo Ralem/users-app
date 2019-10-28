@@ -1,7 +1,7 @@
 import React from "react";
 import { select } from "@storybook/addon-knobs";
 import ClassNames from "classnames";
-export const whitCenteredContainer = story => (
+export const withCenteredContainer = story => (
     <div
         className={ClassNames(
             "Container",
