@@ -4,7 +4,13 @@ import ClassNames from "classnames";
 
 import "./Paragraph.styl";
 const Paragraph = ({ children, className, color }) => (
-    <div className={ClassNames("Paragraph", className, `c-${color}`)}>
+    <div
+        className={ClassNames(
+            "Paragraph",
+            className,
+            color ? `c-${color}` : null
+        )}
+    >
         {children}
     </div>
 );
@@ -17,8 +23,5 @@ Paragraph.propTypes = {
     ]),
     className: PropTypes.string,
     color: PropTypes.oneOf(["white", "black", "magenta", "cyan", "yellow"])
-};
-Paragraph.defaultProps = {
-    color: "black"
 };
 export default Paragraph;

@@ -27,7 +27,7 @@ const LoaderDisplay = ({ children, isVisible, className }) => {
         });
     };
     const ElementHide = () => {
-        TweenMax.to(ElementRef.current, 0.25, {
+        TweenMax.to(ElementRef.current, 0.5, {
             autoAlpha: 0
         });
     };

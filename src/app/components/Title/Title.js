@@ -4,9 +4,9 @@ import classNames from "classnames";
 
 import "./Title.styl";
 const Title = ({ children, className, color }) => (
-    <div className={classNames("Title", className, `c-${color}`)}>
+    <h1 className={classNames("Title", className, color ? `c-${color}` : null)}>
         {children}
-    </div>
+    </h1>
 );
 Title.displayName = "Title";
 Title.propTypes = {
@@ -17,8 +17,5 @@ Title.propTypes = {
     ]),
     className: PropTypes.string,
     color: PropTypes.oneOf(["white", "black", "magenta", "cyan", "yellow"])
-};
-Title.defaultProps = {
-    color: "black"
 };
 export default Title;

@@ -1,16 +1,15 @@
 import React, { Fragment, useContext } from "react";
 import { render } from "react-dom";
 import AppContext, { AppStore } from "app/context";
-import { AvatarDisplay } from "components/AvatarDisplay";
 import { Loader } from "components/Loader";
+import MainView from "views/Main";
 const App = () => {
-    const { appReady, users } = useContext(AppContext);
+    const { appReady } = useContext(AppContext);
     return (
         <Fragment>
             {appReady ? (
                 <div className="app">
-                    Hello from App component
-                    <AvatarDisplay avatarUrl={users[0].picture.large} />
+                    <MainView></MainView>
                 </div>
             ) : null}
             <Loader />

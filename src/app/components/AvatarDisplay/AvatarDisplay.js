@@ -5,7 +5,7 @@ import "./AvatarDisplay.styl";
 const AvatarDisplay = ({ avatarUrl }) => (
     <div
         className="AvatarDisplay"
-        style={{ backgroundImage: `url(${avatarUrl})` }}
+        style={{ backgroundImage: avatarUrl ? `url(${avatarUrl})` : null }}
     ></div>
 );
 

@@ -24,7 +24,4 @@ Subtitle.propTypes = {
     className: PropTypes.string,
     color: PropTypes.oneOf(["white", "black", "magenta", "cyan", "yellow"])
 };
-Subtitle.defaultProps = {
-    color: "white"
-};
 export default Subtitle;

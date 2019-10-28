@@ -12,7 +12,8 @@ module.exports = {
             reducers: resolve("src/app/reducers"),
             actions: resolve("src/app/actions"),
             style: resolve("src/style"),
-            assets: resolve("src/assets")
+            assets: resolve("src/assets"),
+            views: resolve("src/app/views")
         }
     },
     module: {
