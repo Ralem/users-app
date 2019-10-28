@@ -8,6 +8,7 @@ const HTMLWebpackPlugin = require("html-webpack-plugin");
 const MiniCSSExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 
 const PUBLIC_PATH = "/";
 const DIR_DIST = "dist";
@@ -20,6 +21,20 @@ module.exports = webpackMerge(webpackBaseConfig, {
         path: resolve(DIR_DIST),
         publicPath: PUBLIC_PATH,
         filename: `${DIR_ASSETS}/js/[name].[chunkhash].js`
+    },
+    optimization: {
+        minimizer: [
+            new UglifyJSPlugin({
+                cache: true,
+                parallel: true,
+                sourceMap: true,
+                uglifyOptions: {
+                    compress: {
+                        drop_console: true
+                    }
+                }
+            })
+        ]
     },
     module: {
         rules: [
@@ -39,7 +54,7 @@ module.exports = webpackMerge(webpackBaseConfig, {
                 test: /\.(png|jpg|gif)$/i,
                 loader: "url-loader",
                 options: {
-                    limit: 8000,
+                    limit: 1000,
                     name: `${DIR_ASSETS}/img/[name].[hash].[ext]`
                 }
             },
@@ -47,7 +62,7 @@ module.exports = webpackMerge(webpackBaseConfig, {
                 test: /\.(woff2?|eot|ttf|otf|svg)(\?.*)?$/,
                 loader: "url-loader",
                 options: {
-                    limit: 8000,
+                    limit: 1000,
                     name: `${DIR_ASSETS}/fonts/[name].[hash].[ext]`
                 }
             }
