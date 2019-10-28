@@ -3,8 +3,10 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 
 import "./Title.styl";
-const Title = ({ children, className }) => (
-    <div className={classNames("Title", className)}>{children}</div>
+const Title = ({ children, className, color }) => (
+    <div className={classNames("Title", className, `c-${color}`)}>
+        {children}
+    </div>
 );
 Title.displayName = "Title";
 Title.propTypes = {
@@ -13,6 +15,10 @@ Title.propTypes = {
         PropTypes.node,
         PropTypes.arrayOf(PropTypes.node)
     ]),
-    className: PropTypes.string
+    className: PropTypes.string,
+    color: PropTypes.oneOf(["white", "black", "magenta", "cyan", "yellow"])
+};
+Title.defaultProps = {
+    color: "black"
 };
 export default Title;

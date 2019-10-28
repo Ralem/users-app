@@ -31,16 +31,16 @@ export default {
 };
 export const Default = () => (
     <Title
-        className={select(
+        color={select(
             "Style",
             {
-                Default: null,
-                Black: "Title-c-black",
-                Magenta: "Title-c-magenta",
-                Yellow: "Title-c-yellow",
-                Cyan: "Title-c-cyan"
+                White: "white",
+                Black: "black",
+                Yellow: "yellow",
+                Cyan: "cyan",
+                Magenta: "magenta"
             },
-            null
+            "white"
         )}
     >
         {text("Text", "Hello from Title Component")}

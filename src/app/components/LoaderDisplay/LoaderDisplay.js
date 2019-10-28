@@ -4,16 +4,20 @@ import PropTypes from "prop-types";
 import ClassNames from "classnames";
 
 import "./LoaderDisplay.styl";
-import { TweenMax } from "gsap";
-const LoaderDisplay = ({ children, isVisible }) => {
+const LoaderDisplay = ({ children, isVisible, className }) => {
     const ElementRef = useRef(null);
     const Element = (
         <div
-            className={ClassNames("LoaderDisplay", "bg-gradient", "c-white")}
+            className={ClassNames(
+                "LoaderDisplay",
+                "bg-gradient",
+                "c-white",
+                className
+            )}
             ref={ElementRef}
         >
             <div className="Container Flex Flex-middle Flex-center">
-                {children}
+                <div className="LoaderDisplay-wrapper">{children}</div>
             </div>
         </div>
     );
@@ -41,6 +45,7 @@ LoaderDisplay.propTypes = {
         PropTypes.node,
         PropTypes.arrayOf(PropTypes.node)
     ]),
+    className: PropTypes.string,
     isVisible: PropTypes.bool
 };
 

@@ -1,27 +1,26 @@
-import React, { useContext, useEffect } from "react";
+import React, { Fragment, useContext } from "react";
 import { render } from "react-dom";
-import Api from "src/utils/Api";
 import AppContext, { AppStore } from "app/context";
+import { AvatarDisplay } from "components/AvatarDisplay";
+import { Loader } from "components/Loader";
 const App = () => {
-    const { appReady, users, setUsers, appReadySet } = useContext(AppContext);
-    const fetchUsers = async () => {
-        const users = await Api.getMultipleUsers();
-        setUsers(users.results);
-        appReadySet(true);
-    };
-    useEffect(() => {
-        fetchUsers();
-    }, []);
-    return appReady ? (
-        <div className="app" onClick={fetchUsers}>
-            Hello from App component <img src={users[0].picture.large} alt="" />
-        </div>
-    ) : null;
+    const { appReady, users } = useContext(AppContext);
+    return (
+        <Fragment>
+            {appReady ? (
+                <div className="app">
+                    Hello from App component
+                    <AvatarDisplay avatarUrl={users[0].picture.large} />
+                </div>
+            ) : null}
+            <Loader />
+        </Fragment>
+    );
 };
 App.displayName = "App";
 export default render(
     <AppStore>
         <App></App>
     </AppStore>,
-    document.getElementById("app")
+    document.getElementById("root")
 );

@@ -32,7 +32,9 @@ module.exports = {
         Back: true,
         Elastic: true,
         Linear: true,
-        Expo: true
+        Expo: true,
+        SplitText: true,
+        Circ: true
     },
     // Add custom rules here
     rules: {
