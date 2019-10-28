@@ -1,9 +1,11 @@
 import React from "react";
 import { render } from "react-dom";
 import image from "assets/img/men_0.jpg";
+import Api from "src/utils/Api";
 const App = () => {
     const test = async () => {
-        console.log("hi");
+        const request = await Api.getMultipleUsers();
+        console.log(request);
     };
     return (
         <div className="app" onClick={test}>
