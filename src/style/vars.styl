@@ -7,6 +7,7 @@ $PigeonPost = #B7C7DC;
 $Ghost = #C6C9CF;
 $RadicalRed = #FF2A71;
 $LightningYellow = #ffc023;
+$Scooter = #28C4D0;
 
 //Fonts
 $Global = {
@@ -15,3 +16,73 @@ $Global = {
         Family: 'Montserrat',
     }
 }
+
+// Background
+bg-c-white()
+    background-color $White
+
+bg-c-black()
+    background-color $Black
+
+bg-c-magenta()
+    background-color $RadicalRed
+
+bg-c-yellow()
+    background-color $LightningYellow
+
+bg-c-cyan()
+    background-color $Scooter
+
+bg-gradient()
+    background linear-gradient(bottom left, $RadicalRed, $LightningYellow)
+
+// Color
+c-white()
+    color $White
+
+c-black()
+    color $Black
+
+c-magenta()
+    color $RadicalRed
+
+c-yellow()
+    color $LightningYellow
+
+c-cyan()
+    color $Scooter
+
+// Background
+$bg-c-white
+    bg-c-white()
+
+$bg-c-black
+    bg-c-black()
+
+$bg-c-magenta
+    bg-c-magenta()
+
+$bg-c-yellow
+    bg-c-yellow()
+
+$bg-c-cyan
+    bg-c-cyan()
+
+$bg-gradient
+    bg-gradient()
+
+// Color
+$c-white
+    c-white()
+
+$c-black
+    c-black()
+
+$c-magenta
+    c-magenta()
+
+$c-yellow
+    c-yellow()
+
+$c-cyan
+    c-cyan()

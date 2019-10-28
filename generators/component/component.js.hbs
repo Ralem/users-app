@@ -2,7 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import "./{{ name }}.styl";
-const {{ name }} = ({ children }) => <div className="{{ name }}">{children}</div>;
+const {{ name }} = ({ children }) => (
+    <div className="{{ name }}">{children}</div>
+);
 {{ name }}.displayName = "{{ name }}";
 {{ name }}.propTypes = {
     children: PropTypes.oneOfType([
