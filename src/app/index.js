@@ -1,17 +1,27 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { render } from "react-dom";
-import image from "assets/img/men_0.jpg";
 import Api from "src/utils/Api";
+import AppContext, { AppStore } from "app/context";
 const App = () => {
-    const test = async () => {
-        const request = await Api.getMultipleUsers();
-        console.log(request);
+    const { appReady, users, setUsers, appReadySet } = useContext(AppContext);
+    const fetchUsers = async () => {
+        const users = await Api.getMultipleUsers();
+        setUsers(users.results);
+        appReadySet(true);
     };
-    return (
-        <div className="app" onClick={test}>
-            Hello from App component <img src={image} alt="" />
+    useEffect(() => {
+        fetchUsers();
+    }, []);
+    return appReady ? (
+        <div className="app" onClick={fetchUsers}>
+            Hello from App component <img src={users[0].picture.large} alt="" />
         </div>
-    );
+    ) : null;
 };
 App.displayName = "App";
-export default render(<App />, document.getElementById("app"));
+export default render(
+    <AppStore>
+        <App></App>
+    </AppStore>,
+    document.getElementById("app")
+);

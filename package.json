@@ -53,6 +53,7 @@
         "nib": "^1.1.2",
         "optimize-css-assets-webpack-plugin": "^5.0.3",
         "prettier": "^1.18.2",
+        "prop-types": "^15.7.2",
         "rupture": "^0.7.1",
         "style-loader": "^1.0.0",
         "stylus": "^0.54.7",
