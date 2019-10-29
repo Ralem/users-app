@@ -11,14 +11,14 @@ const Loader = () => {
     const { setUsers, appReadySet, appReady } = useContext(AppContext);
     const [showLoader, showLoaderSet] = useState(true);
     const fetchUsers = async () => {
-        const request = await Api.getMultipleUsers(500);
+        const request = await Api.getUsers();
         await setUsers(request.results);
         setTimeout(() => {
             appReadySet(true);
             setTimeout(() => {
                 showLoaderSet(false);
             }, 1000);
-        }, 3000);
+        }, 1000);
     };
     useEffect(() => {
         fetchUsers();

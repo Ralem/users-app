@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import AppContext from "app/context";
 import { Title } from "components/Title";
 import { Paragraph } from "components/Paragraph";
@@ -6,7 +6,7 @@ import { Subtitle } from "components/Subtitle";
 import { AvatarDisplay } from "components/AvatarDisplay";
 import "./Main.styl";
 const Main = () => {
-    const { users } = useContext(AppContext);
+    const { users, apiConfigSet } = useContext(AppContext);
     return (
         <div className="View Main">
             <div className="Container">
@@ -21,11 +21,18 @@ const Main = () => {
                 </div>
                 <div className="Main-body">
                     <div className="Container BoundsContainer">
-                        <Subtitle className="Main-subtitle">Users</Subtitle>
+                        <Subtitle
+                            onClick={() => {
+                                apiConfigSet({ page: 2 });
+                            }}
+                            className="Main-subtitle"
+                        >
+                            Users
+                        </Subtitle>
                         <div className="Flex">
-                            {users.map(user => (
+                            {users.map((user, idx) => (
                                 <AvatarDisplay
-                                    key={user.id.value}
+                                    key={`user-${idx}`}
                                     avatarUrl={user.picture.large}
                                 />
                             ))}

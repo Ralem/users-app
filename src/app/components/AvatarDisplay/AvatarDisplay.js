@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import PropTypes from "prop-types";
 
 import "./AvatarDisplay.styl";
@@ -19,4 +19,4 @@ AvatarDisplay.propTypes = {
     ])
 };
 
-export default AvatarDisplay;
+export default memo(AvatarDisplay);

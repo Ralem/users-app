@@ -28,8 +28,12 @@
 .Flex-bottom
   @extends $Flex-bottom
 
-
+html
 body
+#root
+    height 100%
+
+#root
     overflow-x hidden
 
 html
@@ -37,8 +41,5 @@ body
 #root
 .app
 .View
-    size 100%
-    background-color $White
-
-.View
-    overflow auto
+    width 100%
+    min-height 100%

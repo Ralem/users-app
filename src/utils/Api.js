@@ -1,20 +1,24 @@
 import axios from "axios";
 class Api {
     static url = "https://randomuser.me/api";
-    static getEndpointUrl = endpoint => `${this.url}/${endpoint}`;
-    static get = async endpoint => {
-        try {
-            const request = await axios.get(this.getEndpointUrl(endpoint));
-            return request.data;
-        } catch (error) {
-            Promise.reject(error);
-        }
+    static seed = "";
+    static perPage = 30;
+    static currentPage = 1;
+    static nationalities = [];
+    static genders = [];
+    static get endpoint() {
+        return `${this.url}?results=${this.perPage}&seed=${this.seed}`;
+    }
+
+    static changePage = page => {
+        this.currentPage = page || this.currentPage + 1;
     };
 
-    static getMultipleUsers = async (qty = 5) => {
+    static getUsers = async () => {
         try {
-            const request = await this.get(`?results=${qty}`);
-            return request;
+            const { data } = await axios.get(this.endpoint);
+            this.seed = data.info.seed;
+            return data;
         } catch (error) {
             Promise.reject(error);
         }
