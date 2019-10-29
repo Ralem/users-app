@@ -4,9 +4,10 @@ import { Title } from "components/Title";
 import { Paragraph } from "components/Paragraph";
 import { Subtitle } from "components/Subtitle";
 import { AvatarDisplay } from "components/AvatarDisplay";
+import { apiPageIncrement } from "app/context/apiActions";
 import "./Main.styl";
 const Main = () => {
-    const { users, apiConfigSet } = useContext(AppContext);
+    const { users, apiState, apiDispatch } = useContext(AppContext);
     return (
         <div className="View Main">
             <div className="Container">
@@ -23,11 +24,11 @@ const Main = () => {
                     <div className="Container BoundsContainer">
                         <Subtitle
                             onClick={() => {
-                                apiConfigSet({ page: 2 });
+                                apiDispatch(apiPageIncrement());
                             }}
                             className="Main-subtitle"
                         >
-                            Users
+                            Users, Page {apiState.page}
                         </Subtitle>
                         <div className="Flex">
                             {users.map((user, idx) => (

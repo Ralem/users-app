@@ -7,11 +7,15 @@ class Api {
     static nationalities = [];
     static genders = [];
     static get endpoint() {
-        return `${this.url}?results=${this.perPage}&seed=${this.seed}`;
+        return `${this.url}?results=${this.perPage}&page=${this.currentPage}&seed=${this.seed}`;
     }
 
     static changePage = page => {
-        this.currentPage = page || this.currentPage + 1;
+        this.currentPage = page;
+    };
+
+    static perPageChange = qty => {
+        this.perPage = qty;
     };
 
     static getUsers = async () => {

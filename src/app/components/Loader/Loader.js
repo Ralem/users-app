@@ -5,29 +5,40 @@ import { Title } from "components/Title";
 import { TextLoadingAnimation } from "components/TextLoadingAnimation";
 import { SmallText } from "components/SmallText";
 import AppContext from "app/context";
-import Api from "src/utils/Api";
 
 const Loader = () => {
-    const { setUsers, appReadySet, appReady } = useContext(AppContext);
+    const { appReady, apiState } = useContext(AppContext);
     const [showLoader, showLoaderSet] = useState(true);
-    const fetchUsers = async () => {
-        const request = await Api.getUsers();
-        await setUsers(request.results);
-        setTimeout(() => {
-            appReadySet(true);
-            setTimeout(() => {
-                showLoaderSet(false);
-            }, 1000);
+    const [mounted, mountedSet] = useState(false);
+    const [showLoaderText, showLoaderTextSet] = useState(true);
+
+    const loaderShow = () => {
+        showLoaderSet(true);
+    };
+
+    const loaderHide = () => {
+        const delay = setTimeout(() => {
+            showLoaderSet(false);
+            clearTimeout(delay);
         }, 1000);
     };
+
     useEffect(() => {
-        fetchUsers();
-    }, []);
+        if (!mounted) {
+            mountedSet(true);
+        } else if (appReady && apiState.loading) {
+            showLoaderTextSet(true);
+            loaderShow();
+        } else if (appReady & !apiState.loading) {
+            showLoaderTextSet(false);
+            loaderHide();
+        }
+    }, [appReady, apiState.loading]);
     return (
         <LoaderDisplay isVisible={showLoader} className="Text-center">
             <Title color="white">
                 Loading Users <br />
-                {!appReady ? (
+                {showLoaderText ? (
                     <TextLoadingAnimation>Wait a moment</TextLoadingAnimation>
                 ) : (
                     <SmallText>All Done</SmallText>
