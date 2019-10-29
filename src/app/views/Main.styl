@@ -1,5 +1,10 @@
+@require "~style/vars"
 .Main
     position relative
+
+.Main-container
+    display flex
+    flex-flow column nowrap
 
 .Main-title
     margin-bottom 20px
@@ -12,3 +17,10 @@
 
 .Main-subtitle
     margin-bottom 40px
+
+.Main-pagination
+    @extend $FontMedium
+    margin-top auto
+    padding-top 5px
+    color $Amaranth
+    border-top 1px solid @color
