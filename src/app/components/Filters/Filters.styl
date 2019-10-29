@@ -1,0 +1,25 @@
+@require "~style/vars"
+.Filters
+    position relative
+
+.Filters-label
+    @extends $clickable
+    display inline-block
+
+.Filters-expandable
+    overflow hidden
+
+.Filters-expandable--pristine
+    height 0
+
+.Filters-gender
+    @extend $clickable
+    color $PigeonPost
+    margin-top 10px
+    margin-right 5px
+
+    &:last-child
+        margin-right 0
+
+.Filters-gender--current
+    color $NeonCarrot

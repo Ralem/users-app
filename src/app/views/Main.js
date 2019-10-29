@@ -5,9 +5,10 @@ import { Paragraph } from "components/Paragraph";
 import { Subtitle } from "components/Subtitle";
 import { AvatarDisplay } from "components/AvatarDisplay";
 import { Pagination } from "components/Pagination";
+import { Filters } from "components/Filters";
 import "./Main.styl";
 const Main = () => {
-    const { users, apiState, apiDispatch } = useContext(AppContext);
+    const { users } = useContext(AppContext);
     return (
         <div className="View Main">
             <div className="Container Main-container">
@@ -23,6 +24,7 @@ const Main = () => {
                 </div>
                 <div className="Main-body">
                     <div className="Container BoundsContainer">
+                        <Filters></Filters>
                         <Subtitle className="Main-subtitle">Users</Subtitle>
                         <div className="Flex">
                             {users.map((user, idx) => (

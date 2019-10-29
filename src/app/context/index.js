@@ -10,6 +10,7 @@ export const AppStore = props => {
     const [users, setUsers] = useState([]);
     const [appReady, appReadySet] = useState(false);
     const [apiState, apiDispatch] = useReducer(apiReducer, apiInitialState);
+    const [filtersOpened, filtersOpenedSet] = useState(false);
     // Fetch new users
     const fetchUsers = async () => {
         await apiDispatch(apiLoadingSet(true));
@@ -19,14 +20,22 @@ export const AppStore = props => {
         await apiDispatch(apiPageChange(request.info.page));
         await apiDispatch(apiLoadingSet(false));
     };
+    // Sync Api class to Api Store
     const apiSync = async () => {
         await Api.changePage(apiState.page);
         await Api.perPageChange(apiState.perPage);
+        await Api.genderSet(apiState.gender);
+        await Api.nationalitiesSet(apiState.nationalities);
     };
     // Fetch new users if api state changes
     useEffect(() => {
         if (appReady) fetchUsers();
-    }, [apiState.page, apiState.perPage]);
+    }, [
+        apiState.page,
+        apiState.perPage,
+        apiState.gender,
+        apiState.nationalities
+    ]);
     return (
         <AppProvider
             value={{
@@ -35,7 +44,9 @@ export const AppStore = props => {
                 users,
                 fetchUsers,
                 apiState,
-                apiDispatch
+                apiDispatch,
+                filtersOpened,
+                filtersOpenedSet
             }}
         >
             {props.children}

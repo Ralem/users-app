@@ -1,0 +1,16 @@
+@require "~style/vars"
+.CountrySelector
+    position relative
+
+.CountrySelector-flag
+    margin-right 10px
+    opacity 0.5
+    padding 0 5px
+    border 1px solid alpha($Scooter, 0)
+
+    &:last-child
+        margin-right 0
+
+.CountrySelector-flag--selected
+    opacity 1
+    border 1px solid $Scooter
