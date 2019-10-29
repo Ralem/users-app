@@ -1,0 +1,27 @@
+@import "buttons"
+@import "headings"
+@import "inputs"
+@import "layout"
+@import "links"
+@import "texts"
+@import "visuals"
+
+html
+    background-color $Amaranth
+
+html
+body
+    font-smoothing antialiased
+
+body
+input
+textarea
+button
+    @extends $FontRegular
+
+body
+    font-size $Global.Font.SizeQ
+    font-family $Global.Font.Family
+
+.app
+    background-color $White

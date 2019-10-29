@@ -1,0 +1,102 @@
+placeholder()
+    &::-webkit-input-placeholder
+        {block}
+    &:-moz-placeholder
+        {block}
+    &::-moz-placeholder
+        {block}
+    &:-ms-input-placeholder
+        {block}
+
+clickable()
+    cursor pointer
+    -webkit-tap-highlight-color transparent
+    user-select none
+
+    &:focus
+        outline none
+
+// Text
+
+font-smoothing() {
+    if current-property {
+        -webkit-{current-property}: arguments
+        if arguments == antialiased {
+            -moz-osx-{current-property}: grayscale
+        } else if arguments == subpixel-antialiased {
+            -moz-osx-{current-property}: auto
+        }
+        {current-property}: arguments
+    } else {
+        error('font-smoothing() must be used within a property');
+    }
+}
+
+Tracking(PSUnit)
+    letter-spacing (PSUnit / 1000 * 1em)
+
+Text-left()
+  text-align left
+
+Text-center()
+  text-align center
+
+Text-right()
+  text-align right
+
+// Files
+
+img-url(file)
+    return url("~assets/img/" + file)
+
+font-url(file)
+    return '~assets/fonts/' + file
+
+webfont(family, file, weight = 400, font-style = normal)
+    @font-face
+        font-family family
+        src url(font-url(file + '.woff')) format('woff')
+        font-weight weight
+        font-style font-style
+
+// Fonts
+
+FontLight()
+    font-weight 300
+
+FontRegular()
+    font-weight 400
+
+FontMedium()
+    font-weight 500
+
+FontBold()
+    font-weight 700
+
+// Layout
+
+Flex()
+  display flex
+  flex-flow row wrap
+
+Flex-left()
+  justify-content flex-start
+
+Flex-center()
+  justify-content center
+
+Flex-right()
+  justify-content flex-end
+
+Flex-between()
+  justify-content space-between
+
+Flex-top()
+  align-items flex-start
+
+Flex-middle()
+  align-items center
+
+Flex-bottom()
+  align-items flex-end
+

@@ -1,0 +1,16 @@
+{
+    "files": [
+        {
+            "from": "view.js.hbs",
+            "to": "src/app/views/{{ name }}.js"
+        },
+        {
+            "from": "view.styl.hbs",
+            "to": "src/app/views/{{ name }}.styl"
+        },
+        {
+            "from": "index.js.hbs",
+            "to": "src/app/views/index.js"
+        }
+    ]
+}
