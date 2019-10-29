@@ -3,7 +3,7 @@ import AppContext from "app/context";
 import { Title } from "components/Title";
 import { Paragraph } from "components/Paragraph";
 import { Subtitle } from "components/Subtitle";
-import { AvatarDisplay } from "components/AvatarDisplay";
+import { UserDisplaySlim } from "components/UserDisplaySlim";
 import { Pagination } from "components/Pagination";
 import { Filters } from "components/Filters";
 import "./Main.styl";
@@ -28,9 +28,9 @@ const Main = () => {
                         <Subtitle className="Main-subtitle">Users</Subtitle>
                         <div className="Flex">
                             {users.map((user, idx) => (
-                                <AvatarDisplay
+                                <UserDisplaySlim
                                     key={`user-${idx}`}
-                                    avatarUrl={user.picture.large}
+                                    userData={user}
                                 />
                             ))}
                         </div>
