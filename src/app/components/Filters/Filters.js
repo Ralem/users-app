@@ -3,15 +3,15 @@ import PropTypes from "prop-types";
 import ClassNames from "classnames";
 import AppContext from "app/context";
 import { CountrySelector } from "components/CountrySelector";
-import { Icon } from "components/Icon";
-import { apiGenderSet } from "app/context/apiActions";
+// import { Icon } from "components/Icon";
+import { apiPerPageAmountSet } from "app/context/apiActions";
 
 import "./Filters.styl";
 const Filters = ({ children, className }) => {
     const {
         filtersOpened,
         filtersOpenedSet,
-        apiState: { gender },
+        apiState: { perPage },
         apiDispatch
     } = useContext(AppContext);
     const expandableRef = useRef();
@@ -54,6 +54,21 @@ const Filters = ({ children, className }) => {
                 ref={expandableRef}
             >
                 <CountrySelector></CountrySelector>
+                <div className="Filters-perPage Flex Flex-middle">
+                    {[10, 20, 30, 40, 50].map(n => (
+                        <a
+                            className={ClassNames("Filters-pageAmount", {
+                                "Filters-pageAmount--selected": perPage === n
+                            })}
+                            key={`linkOfPerPage-${n}`}
+                            onClick={() => {
+                                apiDispatch(apiPerPageAmountSet(n));
+                            }}
+                        >
+                            x{n}
+                        </a>
+                    ))}
+                </div>
                 {/* Disabled cus the randomuser.me api has a bug that does not allow to filter by gender if a seed is provided */}
                 {/* <div className="Flex Flex-middle">
                     <Icon

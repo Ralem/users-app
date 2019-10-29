@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect, useReducer } from "react";
 import PropTypes from "prop-types";
 import Api from "src/utils/Api";
 import apiReducer, { apiInitialState } from "./apiReducer";
-import { apiLoadingSet, apiPageChange } from "./apiActions";
+import { apiLoadingSet, apiPageChange, apiPagesMaxSet } from "./apiActions";
 const AppContext = createContext({});
 export const AppProvider = AppContext.Provider;
 export const AppConsumer = AppContext.Consumer;
@@ -27,14 +27,23 @@ export const AppStore = props => {
         await Api.genderSet(apiState.gender);
         await Api.nationalitiesSet(apiState.nationalities);
     };
+    useEffect(() => {
+        apiDispatch(
+            apiPagesMaxSet(Math.ceil(apiState.maxUsers / apiState.perPage))
+        );
+    }, [apiState.perPage]);
     // Fetch new users if api state changes
     useEffect(() => {
-        if (appReady) fetchUsers();
+        if (apiState.page > apiState.maxPages) {
+            apiDispatch(apiPageChange(apiState.maxPages));
+        } else if (appReady) {
+            fetchUsers();
+        }
     }, [
         apiState.page,
-        apiState.perPage,
         apiState.gender,
-        apiState.nationalities
+        apiState.nationalities,
+        apiState.maxPages
     ]);
     return (
         <AppProvider

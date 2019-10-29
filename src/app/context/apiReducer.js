@@ -6,7 +6,9 @@ import {
     API_GENDER_SET,
     API_NATIONALITY_ADD,
     API_NATIONALITY_REMOVE,
-    API_NATIONALITIES_CLEAN
+    API_NATIONALITIES_CLEAN,
+    API_PER_PAGE_AMOUNT_SET,
+    API_PAGES_MAX_SET
 } from "./apiActions";
 export const apiInitialState = {
     page: 1,
@@ -34,9 +36,7 @@ export const apiInitialState = {
         "TR",
         "US"
     ],
-    get maxPages() {
-        return Math.ceil(this.maxUsers / this.perPage);
-    }
+    maxPages: 1
 };
 const NationalitiesModify = (state, nat, type = "add") => {
     const updatedNationalities = [...state.nationalities];
@@ -74,6 +74,10 @@ const ApiReducer = (state, { type, payload }) => {
             return NationalitiesModify(state, payload, "remove");
         case API_NATIONALITIES_CLEAN:
             return { ...state, nationalities: [] };
+        case API_PER_PAGE_AMOUNT_SET:
+            return { ...state, perPage: payload };
+        case API_PAGES_MAX_SET:
+            return { ...state, maxPages: payload };
     }
     return state;
 };

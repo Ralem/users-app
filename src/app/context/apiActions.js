@@ -6,6 +6,8 @@ export const API_GENDER_SET = "API_GENDER_SET";
 export const API_NATIONALITY_ADD = "API_NATIONALITY_ADD";
 export const API_NATIONALITY_REMOVE = "API_NATIONALITY_REMOVE";
 export const API_NATIONALITIES_CLEAN = "API_NATIONALITIES_CLEAN";
+export const API_PER_PAGE_AMOUNT_SET = "API_PER_PAGE_AMOUNT_SET";
+export const API_PAGES_MAX_SET = "API_PAGES_MAX_SET";
 export const apiPageChange = payload => ({ type: API_PAGE_CHANGE, payload });
 export const apiLoadingSet = payload => ({ type: API_LOADING_SET, payload });
 export const apiPageIncrement = () => ({ type: API_PAGE_INCREMENT });
@@ -20,3 +22,8 @@ export const apiNationalityRemove = payload => ({
     payload
 });
 export const apiNationalitiesClean = () => ({ type: API_NATIONALITIES_CLEAN });
+export const apiPerPageAmountSet = payload => ({
+    type: API_PER_PAGE_AMOUNT_SET,
+    payload
+});
+export const apiPagesMaxSet = payload => ({ type: API_PAGES_MAX_SET, payload });
