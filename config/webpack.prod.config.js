@@ -10,7 +10,7 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 
-const PUBLIC_PATH = "/";
+const PUBLIC_PATH = "/users-app/";
 const DIR_DIST = "dist";
 const DIR_ASSETS = "static";
 
